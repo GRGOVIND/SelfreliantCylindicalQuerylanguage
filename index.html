@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Calculator</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0uNBsh1aUJVRo2X6Js3OjFUnKKaDisThDlOiFEY08&s);
+        }
+
+        .calculator {
+            background-color: #111;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .display {
+            padding: 10px;
+            font-size: 2em;
+            text-align: right;
+            color: #fff;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0uNBsh1aUJVRo2X6Js3OjFUnKKaDisThDlOiFEY08&s);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1.5em;
+            border: none;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .operator {
+            background-color: #f57c00;
+        }
+
+        .equal {
+            background-color: #2196f3;
+        }
+
+        button:active {
+            animation: glow 0.5s;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="operator" onclick="appendCharacter('/')">÷</button>
+            <button class="operator" onclick="appendCharacter('*')">x</button>
+            <button class="operator" onclick="appendCharacter('-')">-</button>
+            <button class="operator" onclick="appendCharacter('+')">+</button>
+            <button onclick="appendCharacter('7')">7</button>
+            <button onclick="appendCharacter('8')">8</button>
+            <button onclick="appendCharacter('9')">9</button>
+            <button onclick="appendCharacter('4')">4</button>
+            <button onclick="appendCharacter('5')">5</button>
+            <button onclick="appendCharacter('6')">6</button>
+            <button onclick="appendCharacter('1')">1</button>
+            <button onclick="appendCharacter('2')">2</button>
+            <button onclick="appendCharacter('3')">3</button>
+            <button onclick="appendCharacter('0')">0</button>
+            <button onclick="appendCharacter('.')">.</button>
+            <button onclick="clearDisplay()">C</button>
+            <button class="equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementById('display');
+
+        function appendCharacter(char) {
+            display.textContent += char;
+        }
+
+        function clearDisplay() {
+            display.textContent = '0';
+        }
+
+        function calculate() {
+            try {
+                display.textContent = eval(display.textContent);
+            } catch (error) {
+                display.textContent = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
